@@ -7,16 +7,7 @@ from rest_framework.routers import DefaultRouter
 
 from . import views
 
-# router = DefaultRouter()
-# router.register('login', views.UserProfileViewSet)
-
 urlpatterns = [
-    # user login
-    # url(r'^login/', jwt_views.TokenObtainPairView.as_view(), name='login'),
-    # url(r'^login/', views.UserLoginView.as_view(), name='login'),
-    #url(r'auth/', include(router.urls)),
-
-
     # category
     path(r'category/get-all-room-in-this-category/<room_category_id>', views.AllRoomInThisCategoryView.as_view()),
     path(r'category/list-available-room-of-this-category/<room_category_id>', views.ListAvailableRoomOfThisCategoryView.as_view()),
@@ -28,16 +19,23 @@ urlpatterns = [
     path(r'rent/get-room-rent/<room_rent_ip>', views.CheckRentView.as_view()),
     url(r'^rent/get-all-rentals/', views.AllRentalsView.as_view()),
     path(r'rent/get-50-head-by-default/<filter_status_category>', views.ReturnHead50ByDefaultView.as_view()),
+    url(r'^rent/create-room-rentals/', views.CreateRoomRentalsView.as_view()),
+
     # services
     path(r'services/get-all-services-of-a-room/<room_ip>', views.AllServicesOfARoomView.as_view()),
+    url(r'^services/create-a-service/', views.CreateAServiceView.as_view()),
+
     # rooms
     path(r'get-top-50-available-room/<filter_status_category>', views.GetTop50AvailableRoomView.as_view()),
 
-    url(r'^get_room/', views.RoomView.as_view()),
-    url(r'^get_room_rental/', views.RoomRentalView.as_view()),
-    url(r'^get_available_room/', views.AvailableRoomsView.as_view()),
-    path(r'get_client_by_phone/<phone>', views.ClientByPhoneView.as_view()),
-    url(r'^get_dont_know_how_to_name/', views.DontNoHowToNameView.as_view()),
+    # services
+    path(r'checkout/all-services/<rental_id>', views.AllServicesView.as_view()),
+
+    # client
+    path(r'client/get_client_by_phone/<phone>', views.ClientInformationByPhoneView.as_view()),
+    url(r'^client/create-client/', views.CreateClientView.as_view()),
+
+    #url(r'^get_dont_know_how_to_name/', views.DontNoHowToNameView.as_view()),
 ]
 
 

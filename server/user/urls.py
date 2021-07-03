@@ -8,5 +8,6 @@ router = DefaultRouter()
 router.register('profile', views.UserProfileViewSet)
 
 urlpatterns = [
-    url(r'', include(router.urls))
+    url(r'^', include(router.urls)),
+    url(r'^token/', views.MyTokenObtainPairView.as_view()),
 ]
